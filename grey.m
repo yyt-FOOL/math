@@ -1,0 +1,17 @@
+%灰色关联分析
+clear
+clc
+A=input('请输入初始矩阵：');
+Mean=mean(A);
+%对初始矩阵进行归一化
+disp('归一化后的矩阵为：')
+G=A./repmat(Mean,size(A,1),1)
+%计算极大值a和极小值b
+C=abs(G(:,2:end)-repmat(G(:,1),1,size(A,2)-1));
+a=min(min(C));
+b=max(max(C));
+r=0.5;
+kesi=(a+r*b)./(C+r*b);
+W=mean(kesi);
+disp('计算出的关联度为：')
+w=W/sum(W)
